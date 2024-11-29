@@ -26,9 +26,9 @@ const DefaultScreenHeader = ({
   };
   return (
     <>
-      <View style={tw`w-full h-[200px] bg-[${colors.gray25}] rounded-b-2xl`}>
+      <View style={tw`w-full h-[200px] bg-[${colors.primary700}] `}>
         <ImageBackground
-          source={require('../../assets/images/blue-gradient-bg.png')}
+          // source={require('../../assets/images/pale-gradient-bg.png')}
           style={tw`h-[200px] rounded-b-2xl pt-8 px-6`}
           imageStyle={tw`rounded-b-2xl`}>
           <View
@@ -49,7 +49,7 @@ const DefaultScreenHeader = ({
               bgStyle={tw`bg-transparent w-full px-0`}
             />
           </View>
-          <Text style={tw`text-white  text-2xl`}>{userProfile?.name}</Text>
+          <Text style={tw`text-white mt-4  text-2xl`}>{userProfile?.name}</Text>
           <Text style={tw`text-white font-light text-md`}>
             {userProfile?.email}
           </Text>
