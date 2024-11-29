@@ -4,7 +4,8 @@ const {GeneralDeviceInfo} = NativeModules;
 export const getDeviceModel = async () => {
   try {
     const model = await GeneralDeviceInfo.getDeviceInfo();
-    return model;
+    const battery = await GeneralDeviceInfo.getBatteryLevel();
+    return {model, battery};
   } catch (error) {
     console.error(error);
   }
