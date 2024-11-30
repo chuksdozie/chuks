@@ -1,5 +1,5 @@
 import {View, Text} from 'react-native';
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import GeneralLayout from '../../layouts/GeneralLayout';
 import tw from '../../lib/tailwind';
 import colors from '../../themes/colors';
@@ -13,7 +13,7 @@ import {useAuth0} from 'react-native-auth0';
 import {setAccount} from '../../slices/accountSlice';
 
 const SignIn = () => {
-  const {authorize, isLoading, user} = useAuth0();
+  const {authorize, isLoading, user, error} = useAuth0();
   const dispatch = useDispatch();
   const [token, setToken] = useState('');
 
@@ -33,7 +33,7 @@ const SignIn = () => {
   };
 
   const handleLogin = (payload: object) => {
-    console.log({payload});
+    // console.log({payload});
     dispatch(setAccount({token, userProfile: payload}));
     Toast.show({
       type: 'success',
@@ -47,6 +47,15 @@ const SignIn = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
+
+  useCallback(() => {
+    if (error) {
+      Toast.show({
+        type: 'error',
+        text1: 'Something went wrong, try again later',
+      });
+    }
+  }, [error]);
 
   return (
     <GeneralLayout style={tw`bg-[${colors.primary50}] flex-1 justify-center`}>

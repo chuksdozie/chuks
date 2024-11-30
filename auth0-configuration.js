@@ -1,6 +1,8 @@
-const config = {
-  clientId: "q5Y7qxxZPHkuRX2vxyGe4ObFGpVjXuAl",
-  domain: "dev-0zn0obsjdeskw6h7.us.auth0.com"
+import Config from 'react-native-config';
+
+const auth0Config = {
+  clientId: Config.AUTH0_CLIENT_ID,
+  domain: Config.AUTH0_DOMAIN,
 };
 
-export default config;
+export default auth0Config;

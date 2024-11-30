@@ -13,7 +13,7 @@ const ProfileHeaderWithAction = ({
   bgStyle?: StyleProp<ViewStyle>;
 }) => {
   const {userProfile} = useSelector((state: any) => state.account);
-  console.log({userProfile});
+  // console.log({userProfile});
   return (
     <View
       style={[

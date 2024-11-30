@@ -2,6 +2,7 @@ apply plugin: "com.android.application"
 apply plugin: "org.jetbrains.kotlin.android"
 apply plugin: "com.facebook.react"
 
+apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.gradle"
 apply from: file("../../node_modules/react-native-vector-icons/fonts.gradle")
 
 /**
@@ -86,7 +87,10 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
-        manifestPlaceholders = [auth0Domain: "dev-0zn0obsjdeskw6h7.us.auth0.com", auth0Scheme: "${applicationId}.auth0"]
+
+        manifestPlaceholders = [
+            auth0Domain: project.env.AUTH0_DOMAIN, 
+            auth0Scheme: "${applicationId}.auth0"]
     }
     signingConfigs {
         debug {

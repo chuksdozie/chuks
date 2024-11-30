@@ -13,6 +13,7 @@ interface Props {
 
 const UserHome: React.FC<Props> = () => {
   const [device, setDevice] = React.useState<any>({});
+
   useEffect(() => {
     const fetchDeviceInfo = async () => {
       const model = await getDeviceModel();

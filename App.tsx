@@ -6,7 +6,7 @@
  * @flow strict-local
  */
 
-import React, {useEffect} from 'react';
+import React from 'react';
 import {
   useAuth0,
   Auth0Provider,
@@ -14,19 +14,13 @@ import {
   LocalAuthenticationLevel,
   LocalAuthenticationOptions,
 } from 'react-native-auth0';
-import config from './auth0-configuration';
+import auth0Config from './auth0-configuration';
 
 import {
   KeyboardAvoidingView,
   Platform,
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
   StyleSheet,
   Text,
-  useColorScheme,
-  Alert,
-  Button,
   View,
 } from 'react-native';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
@@ -34,31 +28,17 @@ import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {Navigation} from './src/routes';
 import Toast from 'react-native-toast-message';
 import {toastConfig} from './src/configs/toast';
-import {Provider, useDispatch} from 'react-redux';
+import {Provider} from 'react-redux';
 import {store} from './src/slices';
 import {NavigationContainer} from '@react-navigation/native';
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 import {MenuProvider} from 'react-native-popup-menu';
 import tw from './src/lib/tailwind';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
-import {logOut} from './src/slices/accountSlice';
 
 const Home = () => {
-  const {
-    authorize,
-    clearSession,
-    user,
-    getCredentials,
-    hasValidCredentials,
-    error,
-    isLoading,
-  } = useAuth0();
+  const {isLoading} = useAuth0();
   const queryClient = new QueryClient();
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    console.log({user});
-  }, [user]);
 
   if (isLoading) {
     return (
@@ -103,8 +83,8 @@ const App = () => {
   return (
     <Provider store={store}>
       <Auth0Provider
-        domain={config.domain}
-        clientId={config.clientId}
+        domain={auth0Config.domain}
+        clientId={auth0Config.clientId}
         localAuthenticationOptions={localAuthOptions}>
         <Home />
       </Auth0Provider>

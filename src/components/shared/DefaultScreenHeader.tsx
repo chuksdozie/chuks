@@ -9,17 +9,11 @@ import {useDispatch, useSelector} from 'react-redux';
 import {useAuth0} from 'react-native-auth0';
 import {logOut} from '../../slices/accountSlice';
 
-const DefaultScreenHeader = ({
-  subtext,
-  secondary,
-}: {
-  subtext?: string;
-  secondary?: boolean;
-}) => {
+const DefaultScreenHeader = ({}: {}) => {
   const {clearSession} = useAuth0();
   const dispatch = useDispatch();
   const {userProfile} = useSelector((state: any) => state.account);
-  console.log({userProfile});
+  // console.log({userProfile});
   const onLogout = async () => {
     await clearSession({}, {});
     dispatch(logOut());

@@ -30,8 +30,10 @@ const DeviceCard = ({
           <Icon name={iconName} size={60} color={colors.primary600} />
         </View>
         <View>
-          {details?.map(item => (
-            <Text style={tw`text-[${colors.gray700}] text-md font-light`}>
+          {details?.map((item, index) => (
+            <Text
+              style={tw`text-[${colors.gray700}] text-md font-light`}
+              key={index}>
               {item.key}:- {item.value}
             </Text>
           ))}
