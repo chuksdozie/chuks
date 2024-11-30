@@ -4,3 +4,12 @@ declare module '*.svg' {
   const content: React.FC<SvgProps>;
   export default content;
 }
+
+declare module 'react-native-config' {
+  export interface NativeConfig {
+    HOSTNAME?: string;
+  }
+
+  export const Config: NativeConfig;
+  export default Config;
+}
